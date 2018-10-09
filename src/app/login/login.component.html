@@ -1,0 +1,41 @@
+
+<img src="/assets/images/loginpsd.jpg" id="background-image"/>
+
+<div style="position:absolute;margin-top: 15vh;margin-left: 40vw;">
+    <img id="simplestate-logo" src="/assets/images/loginpsd (1).jpg"/>
+    <hr id="top-hr"/>
+    <div style="text-align: center; font-size: 2.25vw;">כניסה למערכת</div>
+<hr id="bottom-hr"/>
+    
+    <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !mail.valid }">
+            <mat-form-field class="example-full-width" style="width: -webkit-fill-available;text-align: right">
+                <label for="mail"></label>
+                <input type="text"  placeholder=":כתובת מייל" name="mail" matInput [(ngModel)]="model.mail" #mail="ngModel" required />
+                <!-- <span class="prefix-span" matPrefix>:כתובת מייל</span>  -->
+                <div *ngIf="f.submitted && !mail.valid" style="position:absolute" class="help-block">
+                    mail is required</div>
+            </mat-form-field>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+            <mat-form-field class="example-full-width" style="width: -webkit-fill-available;text-align: right">
+                <label for="password"></label>
+                <!-- <span class="prefix-span" matPrefix>:סיסמה</span>  -->
+                <input matInput type="password" name="password" placeholder=":סיסמה" [(ngModel)]="model.password" #password="ngModel"
+                    required />
+               
+                <div *ngIf="f.submitted && !password.valid" style="position:absolute" class="help-block">Password is required</div>
+            </mat-form-field>
+        </div>
+        <a id="forgot-password" [routerLink]="['/forgotPassword']" class="btn btn-link">שכחתי סיסמה</a>
+        <div class="form-group">
+            <button [disabled]="loading" class="btn btn-primary btn-login">כניסה</button>
+        </div>
+        
+        <div id="register-div" >
+            <span> ?עדיין לא רשום</span>
+            <a [routerLink]="['/register']" style="margin-right: 7px;">הירשם עכשיו </a>
+        </div>
+    
+    </form>
+</div>
